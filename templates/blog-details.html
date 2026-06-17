@@ -62,27 +62,55 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        {% for post in fresh_posts %}
         <div class="single-recent-blog-post">
           <div class="thumb" style="max-width: 550px">
             {% if post.image %}
-            <img class="img-fluid" src="{{ post.image }}" alt="">
+            <img class="img-fluid" src="{{ post.title }}" alt="">
               {% else %}
               <img class="img-fluid" src="{% static 'img/banner/blog.png' %}" alt="">
             {% endif %}
             <ul class="thumb-info">
               <li><a href="#"><i class="ti-user"></i>{{ post.author }}</a></li>
               <li><a href="#"><i class="ti-notepad"></i>{{ post.published_at }}9</a></li>
-              <li><a href="#"><i class="ti-themify-favicon"></i>{{ post.comments_amount}}</a></li>
+              <li><a href="#"><i class="ti-themify-favicon"></i>{{ post.likes_amount}}</a></li>
+              
             </ul>
           </div>
           <div class="details mt-20"> 
-          <h3>{{ post.title }}</h3>
-            <p>{{ post.text|truncatechars:200 }}<p>
+          <h3>{{ post.comments.author }}</h3>
+            <p>{{ post.comments.text }}<p>
             <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
           </div>
         </div>
-        {% endfor %}
+      
+      <section class="blog-post-area section-margin mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+      {% for comment in post.comments %}
+        <div class="single-recent-blog-post">
+          <div class="thumb" style="max-width: 550px">
+            {% if post.image %}
+            <img class="img-fluid" src="{{ p }}" alt="">
+              {% else %}
+              <img class="img-fluid" src="{% static 'img/banner/blog.png' %}" alt="">
+            {% endif %}
+            <ul class="thumb-info">
+              <li><a href="#"><i class="ti-user"></i>{{ comment.author }}</a></li>
+              <li><a href="#"><i class="ti-notepad"></i>{{ comment.text }}9</a></li>
+              <li><a href="#"><i class="ti-themify-favicon"></i>{{ comment.published_at}}</a></li>
+              
+            </ul>
+          </div>
+          <div class="details mt-20"> 
+          <h3>{{ post.comments|length }}</h3>
+            <p>{{ post.comments.text }}<p>
+            <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
+          </div>
+        </div>
+      {% endfor %}
+       
+       
 
       <!-- Start Blog Post Sidebar -->
       <div class="col-lg-4 sidebar-widgets">
